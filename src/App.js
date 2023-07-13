@@ -1,9 +1,14 @@
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./Contexts/auth-context";
 
 const App = () => {
   return (
     <div>
-      <Route>app componnent</Route>
+      <AuthProvider>
+        <Routes>
+          <Route path="/"></Route>
+        </Routes>
+      </AuthProvider>
     </div>
   );
 };
