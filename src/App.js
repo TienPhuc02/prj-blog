@@ -1,4 +1,10 @@
+import { Route } from "react-router-dom";
+
 const App = () => {
-  return <>app componnent</>;
+  return (
+    <div>
+      <Route>app componnent</Route>
+    </div>
+  );
 };
 export default App;
