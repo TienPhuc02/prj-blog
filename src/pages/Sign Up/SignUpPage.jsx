@@ -5,6 +5,8 @@ import Input from "../../Components/input";
 import { useForm } from "react-hook-form";
 import Field from "../../Components/field";
 import { IconEyeClose, IconEyeOpen } from "../../Components/icon";
+import Button from "../../Components/button";
+import Loading from "../../Components/loading";
 const SignUpPageStyles = styled.div`
   min-height: 100vh;
   padding: 40px;
@@ -28,6 +30,7 @@ const SignUpPageStyles = styled.div`
 `;
 const SignUpPage = () => {
   const [iconStatePassword, setIconStatePassword] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const {
     control,
     handleSubmit,
@@ -40,12 +43,17 @@ const SignUpPage = () => {
   const ClickIconInput = () => {
     setIconStatePassword(!iconStatePassword);
   };
+  // console.log(isLoading);
   return (
     <SignUpPageStyles>
       <div className="container">
         <img srcSet="./logo.png 2x" alt="logo-blog" className="logo" />
         <h1 className="heading">Monkey Blogging</h1>
-        <form className="form" onSubmit={handleSubmit(handleSignUp)}>
+        <form
+          className="form"
+          autoComplete="off"
+          onSubmit={handleSubmit(handleSignUp)}
+        >
           <Field className="field">
             <Label htmlFor="fullname">Fullname</Label>
             <Input
@@ -86,6 +94,9 @@ const SignUpPage = () => {
               )}
             </Input>
           </Field>
+          <Button type="submit" isLoading={isLoading}>
+            {isLoading === false ? <span>Sign Up</span> : <Loading />}
+          </Button>
         </form>
       </div>
     </SignUpPageStyles>
