@@ -10,6 +10,10 @@ import Loading from "../../Components/loading";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, db } from "../../firebase/firebase-config";
+import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
 const SignUpPageStyles = styled.div`
   min-height: 100vh;
   padding: 40px;
@@ -42,26 +46,45 @@ const schema = yup.object({
 const SignUpPage = () => {
   const [iconStatePassword, setIconStatePassword] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
     formState: { errors, isValid },
     // watch,
-    // reset,
+    reset,
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-  const handleSignUp = (values) => {
+  const handleSignUp = async (values) => {
     setIsLoading(true);
     if (!isValid) return;
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-        setIsLoading(false);
-        console.log(values);
-      }, 3000);
+    // return new Promise((resolve) => {
+    //   setTimeout(() => {
+    //     resolve();
+    //     setIsLoading(false);
+    //     console.log(values);
+    //   }, 3000);
+    // });
+    const user = await createUserWithEmailAndPassword(
+      auth,
+      values.email,
+      values.password
+    );
+    await updateProfile(auth.currentUser, {
+      displayName: values.fullname,
     });
+    const colRef = collection(db, "users");
+    addDoc(colRef, {
+      fullname: values.fullname,
+      email: values.email,
+      password: values.password,
+    });
+    setIsLoading(false);
+    reset();
+    toast.success("Create User successfully!!");
+    navigate("/");
   };
   const ClickIconInput = () => {
     setIconStatePassword(!iconStatePassword);
