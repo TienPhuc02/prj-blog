@@ -1,7 +1,6 @@
 import React from "react";
 import { useController } from "react-hook-form";
 import styled from "styled-components";
-import { IconEyeClose, IconEyeOpen } from "../icon";
 const InputStyle = styled.div`
   position: relative;
   width: 100%;
@@ -25,7 +24,7 @@ const InputStyle = styled.div`
   input::-moz-input-placeholder {
     color: #84878b;
   }
-  .iput-icon {
+  .input-icon {
     position: absolute;
     right: 20px;
     top: 50%;
@@ -41,7 +40,7 @@ const Input = ({ name = "", type = "text", children, control, ...props }) => {
   });
   return (
     <InputStyle hasIcon={children ? true : false}>
-      <input id={name} type={type} {...field} {...props} />
+      <input autoComplete="off" id={name} type={type} {...field} {...props} />
       {children}
     </InputStyle>
   );

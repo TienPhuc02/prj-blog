@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Label } from "../../Components/label";
 import Input from "../../Components/input";
 import { useForm } from "react-hook-form";
-import { IconEyeClose } from "../../Components/icon";
+import Field from "../../Components/field";
+import { IconEyeClose, IconEyeOpen } from "../../Components/icon";
 const SignUpPageStyles = styled.div`
   min-height: 100vh;
   padding: 40px;
@@ -17,12 +18,6 @@ const SignUpPageStyles = styled.div`
     font-size: 40px;
     margin-bottom: 60px;
   }
-  .field {
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-    align-items: flex-start;
-  }
   .form {
     max-width: 600px;
     margin: 0 auto;
@@ -32,14 +27,18 @@ const SignUpPageStyles = styled.div`
   }
 `;
 const SignUpPage = () => {
+  const [iconStatePassword, setIconStatePassword] = useState(true);
   const {
     control,
     handleSubmit,
-    formState: { error, isValid, isSubmitting },
-    watch,
+    // formState: { error, isValid, isSubmitting },
+    // watch,
   } = useForm({});
   const handleSignUp = (values) => {
     console.log(values);
+  };
+  const ClickIconInput = () => {
+    setIconStatePassword(!iconStatePassword);
   };
   return (
     <SignUpPageStyles>
@@ -47,15 +46,46 @@ const SignUpPage = () => {
         <img srcSet="./logo.png 2x" alt="logo-blog" className="logo" />
         <h1 className="heading">Monkey Blogging</h1>
         <form className="form" onSubmit={handleSubmit(handleSignUp)}>
-          <div className="field">
+          <Field className="field">
             <Label htmlFor="fullname">Fullname</Label>
             <Input
               type="text"
               name="fullname"
-              placeholder="Enter your fullname"
+              placeholder="Enter your Fullname"
               control={control}
             />
-          </div>
+          </Field>
+          <Field className="field">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              type="text"
+              name="email"
+              placeholder="Enter your Email"
+              control={control}
+            />
+          </Field>
+          <Field className="field">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              type={iconStatePassword ? "password" : "text"}
+              name="password"
+              placeholder="Enter your Password"
+              control={control}
+            >
+              {iconStatePassword ? (
+                <IconEyeClose
+                  className="input-icon"
+                  onClick={ClickIconInput}
+                ></IconEyeClose>
+              ) : (
+                <IconEyeOpen
+                  className="input-icon"
+                  onClick={ClickIconInput}
+                ></IconEyeOpen>
+              )}
+            </Input>
+          </Field>
         </form>
       </div>
     </SignUpPageStyles>
