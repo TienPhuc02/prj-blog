@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Label } from "../../Components/label";
 import Input from "../../Components/input";
@@ -7,6 +7,9 @@ import Field from "../../Components/field";
 import { IconEyeClose, IconEyeOpen } from "../../Components/icon";
 import Button from "../../Components/button";
 import Loading from "../../Components/loading";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
 const SignUpPageStyles = styled.div`
   min-height: 100vh;
   padding: 40px;
@@ -28,22 +31,49 @@ const SignUpPageStyles = styled.div`
     margin-bottom: 50px;
   }
 `;
+const schema = yup.object({
+  fullname: yup.string().required("Please enter fullname"),
+  email: yup.string().email().required("Please enter valid email address"),
+  password: yup
+    .string()
+    .min(8, "Your password mast be at least 8 character or greater")
+    .required("Please enter valid email address"),
+});
 const SignUpPage = () => {
   const [iconStatePassword, setIconStatePassword] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const {
     control,
     handleSubmit,
-    // formState: { error, isValid, isSubmitting },
+    formState: { errors, isValid },
     // watch,
-  } = useForm({});
+    // reset,
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
   const handleSignUp = (values) => {
-    console.log(values);
+    setIsLoading(true);
+    if (!isValid) return;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+        setIsLoading(false);
+        console.log(values);
+      }, 3000);
+    });
   };
   const ClickIconInput = () => {
     setIconStatePassword(!iconStatePassword);
   };
-  // console.log(isLoading);
+  useEffect(() => {
+    const arrErrors = Object.values(errors);
+    if (arrErrors.length > 0) {
+      toast.error(arrErrors[0]?.message, {
+        pauseOnHover: false,
+      });
+    }
+  }, [errors]);
   return (
     <SignUpPageStyles>
       <div className="container">
