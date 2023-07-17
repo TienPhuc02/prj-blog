@@ -1,7 +1,7 @@
 import React from "react";
 import { useController } from "react-hook-form";
 import styled from "styled-components";
-import { IconEyeOpen } from "../icon";
+import { IconEyeClose, IconEyeOpen } from "../icon";
 const InputStyle = styled.div`
   position: relative;
   width: 100%;
@@ -25,7 +25,7 @@ const InputStyle = styled.div`
   input::-moz-input-placeholder {
     color: #84878b;
   }
-  .icon-eye {
+  .iput-icon {
     position: absolute;
     right: 20px;
     top: 50%;
@@ -33,23 +33,16 @@ const InputStyle = styled.div`
     cursor: pointer;
   }
 `;
-const Input = ({
-  name = "",
-  type = "text",
-  children,
-  hasIcon = false,
-  control,
-  ...props
-}) => {
-  const field = useController({
+const Input = ({ name = "", type = "text", children, control, ...props }) => {
+  const { field } = useController({
     control,
     name,
     defaultValue: "",
   });
   return (
-    <InputStyle hasIcon={hasIcon}>
+    <InputStyle hasIcon={children ? true : false}>
       <input id={name} type={type} {...field} {...props} />
-      {hasIcon ? <IconEyeOpen className="icon-eye"></IconEyeOpen> : null}
+      {children}
     </InputStyle>
   );
 };
