@@ -12,8 +12,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase-config";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
+import AuthenticationPage from "../AuthenticationPage/AuthenticationPage";
 const SignUpPageStyles = styled.div`
   min-height: 100vh;
   padding: 40px;
@@ -60,13 +61,6 @@ const SignUpPage = () => {
   const handleSignUp = async (values) => {
     setIsLoading(true);
     if (!isValid) return;
-    // return new Promise((resolve) => {
-    //   setTimeout(() => {
-    //     resolve();
-    //     setIsLoading(false);
-    //     console.log(values);
-    //   }, 3000);
-    // });
     const user = await createUserWithEmailAndPassword(
       auth,
       values.email,
@@ -84,12 +78,13 @@ const SignUpPage = () => {
     setIsLoading(false);
     reset();
     toast.success("Create User successfully!!");
-    navigate("/");
+    navigate("/sign-in");
   };
   const ClickIconInput = () => {
     setIconStatePassword(!iconStatePassword);
   };
   useEffect(() => {
+    document.title = "Register Page";
     const arrErrors = Object.values(errors);
     if (arrErrors.length > 0) {
       toast.error(arrErrors[0]?.message, {
@@ -98,10 +93,8 @@ const SignUpPage = () => {
     }
   }, [errors]);
   return (
-    <SignUpPageStyles>
-      <div className="container">
-        <img srcSet="./logo.png 2x" alt="logo-blog" className="logo" />
-        <h1 className="heading">Monkey Blogging</h1>
+    <AuthenticationPage>
+      <SignUpPageStyles>
         <form
           className="form"
           autoComplete="off"
@@ -147,12 +140,15 @@ const SignUpPage = () => {
               )}
             </Input>
           </Field>
+          <span style={{ display: "inline-block", marginBottom: "20px" }}>
+            Do you have an account? <Link to="/sign-in">Sign In</Link>
+          </span>
           <Button type="submit" isLoading={isLoading}>
             {isLoading === false ? <span>Sign Up</span> : <Loading />}
           </Button>
         </form>
-      </div>
-    </SignUpPageStyles>
+      </SignUpPageStyles>
+    </AuthenticationPage>
   );
 };
 

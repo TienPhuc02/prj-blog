@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Field from "../../Components/field";
 import { Label } from "../../Components/label";
@@ -7,12 +7,15 @@ import { useForm } from "react-hook-form";
 import { IconEyeClose, IconEyeOpen } from "../../Components/icon";
 import Button from "../../Components/button";
 import Loading from "../../Components/loading";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase-config";
+import { useAuth } from "../../Contexts/auth-context";
+import AuthenticationPage from "../AuthenticationPage/AuthenticationPage";
 const SignInStyles = styled.div`
-  width: 100%;
-  max-width: 1540px;
-  margin: 0 auto;
-  padding: 20px;
-  height: 100vh;
   .form {
     max-width: 600px;
     margin: 0 auto;
@@ -21,84 +24,100 @@ const SignInStyles = styled.div`
     margin-bottom: 50px;
   }
 `;
-const LogoStyles = styled.div`
-  img {
-    margin: 0 auto;
-  }
-`;
-const HeadingStyles = styled.div`
-  h1 {
-    color: ${(props) => props.theme.primary};
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 80px;
-  }
-`;
+const schema = yup.object({
+  email: yup.string().email().required("Please enter valid email address"),
+  password: yup
+    .string()
+    .min(8, "Your password mast be at least 8 character or greater")
+    .required("Please enter valid email address"),
+});
 const SignInPage = () => {
   const [iconStatePassword, setIconStatePassword] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const { userInfo } = useAuth();
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
-    // formState: { errors, isValid },
+    formState: { errors, isValid },
     // watch,
-    // reset,
-  } = useForm({});
+    reset,
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
+  useEffect(() => {
+    document.title = "Login Page";
+    if (userInfo.email) navigate("/");
+    else navigate("/sign-in");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const ClickIconInput = () => {
     setIconStatePassword(!iconStatePassword);
   };
-  const handleSignUp = (values) => {
+  const handleSignIn = async (values) => {
     console.log(values);
+    if (!isValid) return;
+    setIsLoading(true);
+    await signInWithEmailAndPassword(auth, values.email, values.password);
+    setIsLoading(false);
+    reset();
+    toast.success("Sign In successfully!!");
+    navigate("/");
   };
+  useEffect(() => {
+    const arrErrors = Object.values(errors);
+    if (arrErrors.length > 0) {
+      toast.error(arrErrors[0]?.message, {
+        pauseOnHover: false,
+      });
+    }
+  }, [errors]);
   return (
-    <SignInStyles>
-      <LogoStyles>
-        <img srcSet="/logo.png 2x" alt="" />
-      </LogoStyles>
-      <HeadingStyles>
-        <h1>Monkey Blogging</h1>
-      </HeadingStyles>
-      <form
-        className="form"
-        autoComplete="off"
-        onSubmit={handleSubmit(handleSignUp)}
-      >
-        <Field className="field">
-          <Label htmlFor="email">Email Address</Label>
-          <Input
-            type="text"
-            name="email"
-            placeholder="Enter your Email"
-            control={control}
-          />
-        </Field>
-        <Field className="field">
-          <Label htmlFor="password">Password</Label>
-          <Input
-            id="password"
-            type={iconStatePassword ? "password" : "text"}
-            name="password"
-            placeholder="Enter your Password"
-            control={control}
-          >
-            {iconStatePassword ? (
-              <IconEyeClose
-                className="input-icon"
-                onClick={ClickIconInput}
-              ></IconEyeClose>
-            ) : (
-              <IconEyeOpen
-                className="input-icon"
-                onClick={ClickIconInput}
-              ></IconEyeOpen>
-            )}
-          </Input>
-        </Field>
-        <Button type="submit" isLoading={isLoading}>
-          {isLoading === false ? <span>Sign Up</span> : <Loading />}
-        </Button>
-      </form>
-    </SignInStyles>
+    <AuthenticationPage>
+      <SignInStyles>
+        <form
+          className="form"
+          autoComplete="off"
+          onSubmit={handleSubmit(handleSignIn)}
+        >
+          <Field className="field">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              type="text"
+              name="email"
+              placeholder="Enter your Email"
+              control={control}
+            />
+          </Field>
+          <Field className="field">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              type={iconStatePassword ? "password" : "text"}
+              name="password"
+              placeholder="Enter your Password"
+              control={control}
+            >
+              {iconStatePassword ? (
+                <IconEyeClose
+                  className="input-icon"
+                  onClick={ClickIconInput}
+                ></IconEyeClose>
+              ) : (
+                <IconEyeOpen
+                  className="input-icon"
+                  onClick={ClickIconInput}
+                ></IconEyeOpen>
+              )}
+            </Input>
+          </Field>
+          <Button type="submit" isLoading={isLoading}>
+            {isLoading === false ? <span>Sign In</span> : <Loading />}
+          </Button>
+        </form>
+      </SignInStyles>
+    </AuthenticationPage>
   );
 };
 
