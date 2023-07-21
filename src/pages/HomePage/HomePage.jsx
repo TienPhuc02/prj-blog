@@ -7,7 +7,7 @@ const HomePageStyles = styled.div`
   margin: 0 auto;
   .homepage-container {
     height: 100vh;
-    margin: 40px 150px;
+    margin: 20px 150px;
   }
 `;
 const HomePage = () => {

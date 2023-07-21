@@ -1,17 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../button";
+import { NavLink } from "react-router-dom";
 const menuLinks = [
   {
-    url: "/#",
+    url: "/",
     title: "Home",
   },
   {
-    url: "/#",
+    url: "/blog",
     title: "Blog",
   },
   {
-    url: "/#",
+    url: "/contact",
     title: "Contact",
   },
 ];
@@ -35,6 +36,7 @@ const HeaderStyles = styled.div`
     margin-left: 40px;
     list-style: none;
     justify-content: center;
+    font-weight: 500;
   }
   a {
     text-decoration: none;
@@ -63,25 +65,26 @@ const HeaderStyles = styled.div`
   }
   .header-button {
     margin-left: 20px;
-    width: 200px;
-    height: 50px;
+    /* width: 200px; */
+    height: 55px;
+    font-weight: 500;
   }
 `;
 const Header = () => {
   return (
     <HeaderStyles>
       <div className="header-nav-left">
-        <a href="/" className="header-logo">
+        <NavLink to="/" className="header-logo">
           <img className="logo" srcSet="/logo.png 6x" alt="monkey-blogging" />
-        </a>
+        </NavLink>
         <div className="header-menu">
           <ul className="menu">
             {menuLinks.map((item) => {
               return (
                 <li className="menu-item">
-                  <a href={`${item.url}`} className="menu-link">
+                  <NavLink to={item.url} className="menu-link">
                     {item.title}
-                  </a>
+                  </NavLink>
                 </li>
               );
             })}

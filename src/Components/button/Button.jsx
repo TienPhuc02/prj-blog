@@ -9,7 +9,8 @@ const ButtonStyles = styled.button`
   background: linear-gradient(107.61deg, #00a7b4 15.59%, #a4d96c 87.25%);
   padding: 0 25px;
   border-radius: 10px;
-  width: 100%;
+  text-decoration: none;
+  /* width: 100%; */
   color: white;
   display: flex;
   justify-content: center;
@@ -29,7 +30,7 @@ const Button = ({ children, isLoading, type, ...props }) => {
   return (
     <DivButtonStyles>
       {isLoading === true ? (
-        <ButtonStyles disabled type={type}>
+        <ButtonStyles disabled type={type} {...props}>
           {children}
         </ButtonStyles>
       ) : (
