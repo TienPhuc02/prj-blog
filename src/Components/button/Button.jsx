@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 const DivButtonStyles = styled.div`
   display: flex;
@@ -27,6 +28,24 @@ const ButtonStyles = styled.button`
 `;
 const Button = ({ children, isLoading, type, ...props }) => {
   //   console.log(isLoading);
+  const { to } = props;
+  if (to !== "" && typeof to === "string") {
+    return (
+      <NavLink to={to}>
+        <DivButtonStyles>
+          {isLoading === true ? (
+            <ButtonStyles disabled type={type} {...props}>
+              {children}
+            </ButtonStyles>
+          ) : (
+            <ButtonStyles type={type} {...props}>
+              {children}
+            </ButtonStyles>
+          )}
+        </DivButtonStyles>
+      </NavLink>
+    );
+  }
   return (
     <DivButtonStyles>
       {isLoading === true ? (

@@ -114,7 +114,7 @@ const SignInPage = () => {
           </Field>
           <span style={{ display: "inline-block", marginBottom: "20px" }}>
             Do not have you an account?
-            <Link style={{ color: "#2EBAC1" }} to="/sign-in">
+            <Link style={{ color: "#2EBAC1" }} to="/sign-up">
               Sign Up
             </Link>
           </span>

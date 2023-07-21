@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../button";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../Contexts/auth-context";
 const menuLinks = [
   {
     url: "/",
@@ -16,6 +17,7 @@ const menuLinks = [
     title: "Contact",
   },
 ];
+
 const HeaderStyles = styled.div`
   display: flex;
   .header-nav-left {
@@ -36,7 +38,7 @@ const HeaderStyles = styled.div`
     margin-left: 40px;
     list-style: none;
     justify-content: center;
-    font-weight: 500;
+    font-weight: 600;
   }
   a {
     text-decoration: none;
@@ -69,8 +71,16 @@ const HeaderStyles = styled.div`
     height: 55px;
     font-weight: 500;
   }
+  .header-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+  }
 `;
 const Header = () => {
+  const { userInfo } = useAuth();
+  console.log(userInfo);
   return (
     <HeaderStyles>
       <div className="header-nav-left">
@@ -79,9 +89,9 @@ const Header = () => {
         </NavLink>
         <div className="header-menu">
           <ul className="menu">
-            {menuLinks.map((item) => {
+            {menuLinks.map((item, index) => {
               return (
-                <li className="menu-item">
+                <li key={index} className="menu-item">
                   <NavLink to={item.url} className="menu-link">
                     {item.title}
                   </NavLink>
@@ -128,7 +138,18 @@ const Header = () => {
           </svg>
         </span>
       </div>
-      <Button className="header-button">Sign Up</Button>
+      {/* <NavLink to="/sign-up"> */}
+      {!userInfo ? (
+        <Button to="/sign-up" type="button" className="header-button">
+          Sign Up
+        </Button>
+      ) : (
+        <div className="header-auth">
+          <span>Welcome back,</span>
+          <strong className="text-primary">{userInfo?.displayName}</strong>
+        </div>
+      )}
+      {/* </NavLink> */}
     </HeaderStyles>
   );
 };
