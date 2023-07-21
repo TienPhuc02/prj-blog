@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./Contexts/auth-context";
 import SignUpPage from "./pages/Sign Up/SignUpPage";
 import SignInPage from "./pages/Sign In/SignInPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
         <Routes>
           <Route path="/sign-up" element={<SignUpPage />}></Route>
           <Route path="/sign-in" element={<SignInPage />}></Route>
+          <Route path="/" element={<HomePage />}></Route>
         </Routes>
       </AuthProvider>
     </div>

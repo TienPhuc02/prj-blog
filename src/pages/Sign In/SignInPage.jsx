@@ -10,7 +10,7 @@ import Loading from "../../Components/loading";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase-config";
 import { useAuth } from "../../Contexts/auth-context";
@@ -112,6 +112,12 @@ const SignInPage = () => {
               )}
             </Input>
           </Field>
+          <span style={{ display: "inline-block", marginBottom: "20px" }}>
+            Do not have you an account?
+            <Link style={{ color: "#2EBAC1" }} to="/sign-in">
+              Sign Up
+            </Link>
+          </span>
           <Button type="submit" isLoading={isLoading}>
             {isLoading === false ? <span>Sign In</span> : <Loading />}
           </Button>

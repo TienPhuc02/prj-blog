@@ -141,7 +141,10 @@ const SignUpPage = () => {
             </Input>
           </Field>
           <span style={{ display: "inline-block", marginBottom: "20px" }}>
-            Do you have an account? <Link to="/sign-in">Sign In</Link>
+            Do you have an account?{" "}
+            <Link style={{ color: "#2EBAC1" }} to="/sign-in">
+              Sign In
+            </Link>
           </span>
           <Button type="submit" isLoading={isLoading}>
             {isLoading === false ? <span>Sign Up</span> : <Loading />}
