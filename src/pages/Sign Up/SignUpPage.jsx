@@ -146,7 +146,7 @@ const SignUpPage = () => {
               Sign In
             </Link>
           </span>
-          <Button type="submit" isLoading={isLoading}>
+          <Button kind="primary" type="submit" isLoading={isLoading}>
             {isLoading === false ? <span>Sign Up</span> : <Loading />}
           </Button>
         </form>

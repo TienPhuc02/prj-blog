@@ -118,7 +118,7 @@ const SignInPage = () => {
               Sign Up
             </Link>
           </span>
-          <Button type="submit" isLoading={isLoading}>
+          <Button kind="primary" type="submit" isLoading={isLoading}>
             {isLoading === false ? <span>Sign In</span> : <Loading />}
           </Button>
         </form>
