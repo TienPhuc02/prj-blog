@@ -3,16 +3,14 @@ import styled from "styled-components";
 import Header from "../../Components/layout/Header";
 import Layout from "../../Components/layout/Layout";
 import HomeBanner from "../../module/home/HomeBanner";
-import PostFeatureItem from "../../module/post/PostFeatureItem";
-import PostNewLarge from "../../module/post/PostNewLarge";
-import PostNewItem from "../../module/post/PostNewItem";
-import PostItem from "../../module/post/PostItem";
+import HomeFeature from "../../module/home/HomeFeature";
+import HomePostNewest from "../../module/home/HomePostNewest";
+
 const HomePageStyles = styled.div`
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
   height: 100vh;
-  /* padding: 20px 150px; */
   .newest-update {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -27,12 +25,8 @@ const HomePage = () => {
     <HomePageStyles>
       <Layout>
         <HomeBanner />
-        <PostFeatureItem />
-        <div className="newest-update">
-          <PostNewLarge />
-          <PostNewItem />
-        </div>
-        <PostItem />
+        <HomeFeature />
+        <HomePostNewest />
       </Layout>
     </HomePageStyles>
   );

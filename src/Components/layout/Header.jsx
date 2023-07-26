@@ -20,7 +20,8 @@ const menuLinks = [
 
 const HeaderStyles = styled.div`
   display: flex;
-  margin: 20px 150px;
+  padding: 20px 50px;
+  width: 100%;
   .header-nav-left {
     display: flex;
     text-decoration: none;

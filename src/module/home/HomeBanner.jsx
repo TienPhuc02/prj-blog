@@ -17,23 +17,21 @@ const HomeBannerStyles = styled.div`
     justify-content: space-between;
     align-items: center;
     &-content {
-      margin-left: 150px;
+      padding-left: 150px;
     }
     &-title {
-      max-width: 445px;
-      height: 59px;
+      width: 480px;
       font-weight: 700;
       display: inline-block;
       font-size: 48px;
-      margin-left: 35px;
-      margin-bottom: 30px;
+      padding-left: 35px;
+      padding-bottom: 30px;
       font-family: "Montserrat", sans-serif;
     }
     &-description {
-      max-width: 430px;
-      max-height: 100px;
-      margin-left: 35px;
-      margin-bottom: 40px;
+      width: 430px;
+      padding-left: 35px;
+      padding-bottom: 40px;
       font-family: "Montserrat", sans-serif;
       font-weight: 400;
     }
@@ -42,7 +40,7 @@ const HomeBannerStyles = styled.div`
     }
     &-button {
       display: flex;
-      margin-left: 35px;
+      padding-left: 35px;
       justify-content: flex-start;
     }
   }

@@ -1,19 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import PostButton from "./PostButton";
-const PostItemStyles = styled.div`
+const PostNewestItemStyles = styled.div`
+  background-color: ${(props) => props.theme.bgButtonFeature};
+  padding: 30px 0px 30px 20px;
+  border-bottom: 1px solid #ccc;
   .post {
-    &-item {
+    &-newest-item {
+      display: flex;
     }
-    &-item-img {
-      margin-bottom: 20px;
+    &-newest-item-img {
+      max-width: 181px;
+      margin-right: 20px;
+      img {
+        width: 100%;
+      }
     }
-    &-item-content {
+    &-newest-item-content {
     }
-    &-item-button {
+    &-newest-item-button {
       button {
-        margin-top: 20px;
-        background-color: ${(props) => props.theme.bgButtonFeature};
+        background-color: ${(props) => props.theme.grayScale3};
         padding: 4px 10px;
         border-radius: 10px;
         color: ${(props) => props.theme.grayScale};
@@ -21,14 +28,14 @@ const PostItemStyles = styled.div`
         font-size: 14px;
       }
     }
-    &-item-title {
+    &-newest-item-title {
       font-family: ${(props) => props.theme.fontFamilyFeature};
       font-size: 18px;
       font-weight: 500;
       line-height: 28px;
       margin: 10px 0px;
     }
-    &-item-author {
+    &-newest-item-author {
       display: flex;
       align-items: center;
       column-gap: 15px;
@@ -45,27 +52,27 @@ const PostItemStyles = styled.div`
     }
   }
 `;
-const PostItem = () => {
+const PostNewestItem = (props) => {
   return (
-    <PostItemStyles>
-      <div className="post-item">
-        <div className="post-item-img">
+    <PostNewestItemStyles>
+      <div className="post-newest-item">
+        <div className="post-newest-item-img">
           <img src="./featureitem.png" alt="" />
         </div>
-        <div className="post-item-content">
-          <PostButton type="primary">Kiến Thức</PostButton>
-          <div className="post-item-title">
+        <div className="post-newest-item-content">
+          <PostButton type="secondary">Kiến Thức</PostButton>
+          <div className="post-newest-item-title">
             Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
           </div>
-          <div className="post-item-author">
+          <div className="post-newest-item-author">
             <span>Mar 23</span>
             <img src="./Ellipse 22 (1).png" alt="" />
             <span>Andiez Le</span>
           </div>
         </div>
       </div>
-    </PostItemStyles>
+    </PostNewestItemStyles>
   );
 };
 
-export default PostItem;
+export default PostNewestItem;
