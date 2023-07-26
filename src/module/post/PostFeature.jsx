@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostButton from "./PostButton";
+import PostTitle from "./PostTitle";
 const PostFeatureStyles = styled.div`
   .post {
     &-feature-item {
@@ -56,9 +57,12 @@ const PostFeature = () => {
             <span>Andiez Le</span>
           </div>
         </div>
-        <div className="post-feature-title">
+        {/* <div className="post-feature-title">
           Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-        </div>
+        </div> */}
+        <PostTitle className="post-feature-title">
+          Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
+        </PostTitle>
       </div>
     </PostFeatureStyles>
   );

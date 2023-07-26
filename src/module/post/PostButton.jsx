@@ -6,6 +6,7 @@ const PostButtonStyles = styled.div`
     border-radius: 10px;
     color: ${(props) => props.theme.grayScale};
     font-family: ${(props) => props.theme.fontFamilyFeature};
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     font-size: 14px;
     ${(props) =>
       props.type === "primary" &&

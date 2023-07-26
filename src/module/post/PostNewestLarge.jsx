@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostButton from "./PostButton";
+import PostTitle from "./PostTitle";
 const PostNewestLargeStyles = styled.div`
   max-width: 570px;
   .post {
@@ -56,9 +57,9 @@ const PostNewestLarge = () => {
       </div>
       <div className="post-newest-large-content">
         <PostButton type="primary">Kiến Thức</PostButton>
-        <div className="post-newest-large-title">
+        <PostTitle size="big" color="black">
           Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-        </div>
+        </PostTitle>
         <div className="post-newest-large-author">
           <span>Mar 23</span>
           <img src="./Ellipse 22 (1).png" alt="" />

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostButton from "./PostButton";
+import PostTitle from "./PostTitle";
 const PostItemStyles = styled.div`
   .post {
     &-item {
@@ -54,9 +55,9 @@ const PostItem = () => {
         </div>
         <div className="post-item-content">
           <PostButton type="primary">Kiến Thức</PostButton>
-          <div className="post-item-title">
+          <PostTitle size="normal" color="black">
             Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-          </div>
+          </PostTitle>
           <div className="post-item-author">
             <span>Mar 23</span>
             <img src="./Ellipse 22 (1).png" alt="" />

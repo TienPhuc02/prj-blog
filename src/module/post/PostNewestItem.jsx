@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostButton from "./PostButton";
+import PostTitle from "./PostTitle";
 const PostNewestItemStyles = styled.div`
   background-color: ${(props) => props.theme.bgButtonFeature};
   padding: 30px 0px 30px 20px;
@@ -61,9 +62,9 @@ const PostNewestItem = (props) => {
         </div>
         <div className="post-newest-item-content">
           <PostButton type="secondary">Kiến Thức</PostButton>
-          <div className="post-newest-item-title">
+          <PostTitle size="normal" color="black">
             Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-          </div>
+          </PostTitle>
           <div className="post-newest-item-author">
             <span>Mar 23</span>
             <img src="./Ellipse 22 (1).png" alt="" />
