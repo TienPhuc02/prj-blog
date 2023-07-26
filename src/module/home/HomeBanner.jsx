@@ -17,6 +17,7 @@ const HomeBannerStyles = styled.div`
     justify-content: space-between;
     align-items: center;
     &-content {
+      margin-left: 150px;
     }
     &-title {
       max-width: 445px;
