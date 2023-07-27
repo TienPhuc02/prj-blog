@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PostButton from "./PostButton";
 import PostTitle from "./PostTitle";
+import PostMeta from "./PostMeta";
 const PostItemStyles = styled.div`
   .post {
     &-item {
@@ -58,11 +59,11 @@ const PostItem = () => {
           <PostTitle size="normal" color="black">
             Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
           </PostTitle>
-          <div className="post-item-author">
+          <PostMeta type="gray">
             <span>Mar 23</span>
             <img src="./Ellipse 22 (1).png" alt="" />
             <span>Andiez Le</span>
-          </div>
+          </PostMeta>
         </div>
       </div>
     </PostItemStyles>

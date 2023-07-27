@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PostButton from "./PostButton";
 import PostTitle from "./PostTitle";
+import PostMeta from "./PostMeta";
 const PostFeatureStyles = styled.div`
   .post {
     &-feature-item {
@@ -51,15 +52,12 @@ const PostFeature = () => {
         </div>
         <div className="post-feature-header">
           <PostButton type="primary">Kiến Thức</PostButton>
-          <div className="post-feature-author">
+          <PostMeta type="white">
             <span>Mar 23</span>
             <img src="./Ellipse 22.png" alt="" />
             <span>Andiez Le</span>
-          </div>
+          </PostMeta>
         </div>
-        {/* <div className="post-feature-title">
-          Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
-        </div> */}
         <PostTitle className="post-feature-title">
           Hướng dẫn setup phòng cực chill dành cho người mới toàn tập
         </PostTitle>
