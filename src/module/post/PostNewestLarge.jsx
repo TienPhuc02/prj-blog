@@ -3,14 +3,13 @@ import styled from "styled-components";
 import PostButton from "./PostButton";
 import PostTitle from "./PostTitle";
 import PostMeta from "./PostMeta";
+import PostImage from "./PostImage";
 const PostNewestLargeStyles = styled.div`
   max-width: 570px;
   .post {
     &-newest-large-img {
-      width: 100%;
       img {
         width: 100%;
-        object-fit: cover;
         margin-bottom: 25px;
       }
     }
@@ -53,9 +52,10 @@ const PostNewestLargeStyles = styled.div`
 const PostNewestLarge = () => {
   return (
     <PostNewestLargeStyles>
-      <div className="post-newest-large-img">
-        <img src="./featureitem.png" alt="" />
-      </div>
+      <PostImage
+        className="post-newest-large-img"
+        src="./featureitem.png"
+      ></PostImage>
       <div className="post-newest-large-content">
         <PostButton type="primary">Kiến Thức</PostButton>
         <PostTitle size="big" color="black">

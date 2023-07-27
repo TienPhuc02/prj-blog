@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PostButton from "./PostButton";
 import PostTitle from "./PostTitle";
 import PostMeta from "./PostMeta";
+import PostImage from "./PostImage";
 const PostFeatureStyles = styled.div`
   .post {
     &-feature-item {
@@ -47,9 +48,10 @@ const PostFeature = () => {
   return (
     <PostFeatureStyles>
       <div className="post-feature-item">
-        <div className="post-feature-img">
-          <img src="./featureitem.png" alt="" />
-        </div>
+        <PostImage
+          className="post-feature-img"
+          src="./featureitem.png"
+        ></PostImage>
         <div className="post-feature-header">
           <PostButton type="primary">Kiến Thức</PostButton>
           <PostMeta type="white">

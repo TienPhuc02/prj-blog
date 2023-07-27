@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PostButton from "./PostButton";
 import PostTitle from "./PostTitle";
 import PostMeta from "./PostMeta";
+import PostImage from "./PostImage";
 const PostNewestItemStyles = styled.div`
   background-color: ${(props) => props.theme.bgButtonFeature};
   padding: 30px 0px 30px 20px;
@@ -58,9 +59,10 @@ const PostNewestItem = (props) => {
   return (
     <PostNewestItemStyles>
       <div className="post-newest-item">
-        <div className="post-newest-item-img">
-          <img src="./featureitem.png" alt="" />
-        </div>
+        <PostImage
+          className="post-newest-item-img"
+          src="./featureitem.png"
+        ></PostImage>
         <div className="post-newest-item-content">
           <PostButton type="secondary">Kiến Thức</PostButton>
           <PostTitle size="normal" color="black">
