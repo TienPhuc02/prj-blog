@@ -4,7 +4,6 @@ import { Label } from "../../Components/label";
 import Input from "../../Components/input";
 import { useForm } from "react-hook-form";
 import Field from "../../Components/field";
-import { IconEyeClose, IconEyeOpen } from "../../Components/icon";
 import Button from "../../Components/button";
 import Loading from "../../Components/loading";
 import * as yup from "yup";
@@ -15,6 +14,7 @@ import { auth, db } from "../../firebase/firebase-config";
 import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import AuthenticationPage from "../AuthenticationPage/AuthenticationPage";
+import InputPasswordToggle from "../../Components/input/InputPasswordToggle";
 const SignUpPageStyles = styled.div`
   min-height: 100vh;
   padding: 40px;
@@ -120,25 +120,11 @@ const SignUpPage = () => {
           </Field>
           <Field className="field">
             <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type={iconStatePassword ? "password" : "text"}
-              name="password"
-              placeholder="Enter your Password"
+            <InputPasswordToggle
+              ClickIconInput={ClickIconInput}
               control={control}
-            >
-              {iconStatePassword ? (
-                <IconEyeClose
-                  className="input-icon"
-                  onClick={ClickIconInput}
-                ></IconEyeClose>
-              ) : (
-                <IconEyeOpen
-                  className="input-icon"
-                  onClick={ClickIconInput}
-                ></IconEyeOpen>
-              )}
-            </Input>
+              iconStatePassword={iconStatePassword}
+            />
           </Field>
           <span style={{ display: "inline-block", marginBottom: "20px" }}>
             Do you have an account?{" "}

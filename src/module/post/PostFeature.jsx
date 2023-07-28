@@ -51,6 +51,7 @@ const PostFeature = () => {
         <PostImage
           className="post-feature-img"
           src="./featureitem.png"
+          to="/"
         ></PostImage>
         <div className="post-feature-header">
           <PostButton type="primary">Kiến Thức</PostButton>

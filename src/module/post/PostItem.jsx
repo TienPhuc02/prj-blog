@@ -55,6 +55,7 @@ const PostItem = () => {
         <PostImage
           className="post-item-img"
           src="./featureitem.png"
+          to="/"
         ></PostImage>
         <div className="post-item-content">
           <PostButton type="primary">Kiến Thức</PostButton>

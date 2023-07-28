@@ -4,7 +4,7 @@ import Field from "../../Components/field";
 import { Label } from "../../Components/label";
 import Input from "../../Components/input";
 import { useForm } from "react-hook-form";
-import { IconEyeClose, IconEyeOpen } from "../../Components/icon";
+
 import Button from "../../Components/button";
 import Loading from "../../Components/loading";
 import * as yup from "yup";
@@ -15,6 +15,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase-config";
 import { useAuth } from "../../Contexts/auth-context";
 import AuthenticationPage from "../AuthenticationPage/AuthenticationPage";
+import InputPasswordToggle from "../../Components/input/InputPasswordToggle";
 const SignInStyles = styled.div`
   .form {
     max-width: 600px;
@@ -92,25 +93,11 @@ const SignInPage = () => {
           </Field>
           <Field className="field">
             <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type={iconStatePassword ? "password" : "text"}
-              name="password"
-              placeholder="Enter your Password"
+            <InputPasswordToggle
+              ClickIconInput={ClickIconInput}
               control={control}
-            >
-              {iconStatePassword ? (
-                <IconEyeClose
-                  className="input-icon"
-                  onClick={ClickIconInput}
-                ></IconEyeClose>
-              ) : (
-                <IconEyeOpen
-                  className="input-icon"
-                  onClick={ClickIconInput}
-                ></IconEyeOpen>
-              )}
-            </Input>
+              iconStatePassword={iconStatePassword}
+            />
           </Field>
           <span style={{ display: "inline-block", marginBottom: "20px" }}>
             Do not have you an account?

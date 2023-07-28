@@ -62,6 +62,7 @@ const PostNewestItem = (props) => {
         <PostImage
           className="post-newest-item-img"
           src="./featureitem.png"
+          to="/"
         ></PostImage>
         <div className="post-newest-item-content">
           <PostButton type="secondary">Kiến Thức</PostButton>

@@ -55,6 +55,7 @@ const PostNewestLarge = () => {
       <PostImage
         className="post-newest-large-img"
         src="./featureitem.png"
+        to="/"
       ></PostImage>
       <div className="post-newest-large-content">
         <PostButton type="primary">Kiến Thức</PostButton>
