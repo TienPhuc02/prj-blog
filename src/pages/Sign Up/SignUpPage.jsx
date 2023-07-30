@@ -9,7 +9,7 @@ import Loading from "../../Components/loading";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-toastify";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase/firebase-config";
 import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
@@ -61,11 +61,11 @@ const SignUpPage = () => {
   const handleSignUp = async (values) => {
     setIsLoading(true);
     if (!isValid) return;
-    const user = await createUserWithEmailAndPassword(
-      auth,
-      values.email,
-      values.password
-    );
+    // const user = await createUserWithEmailAndPassword(
+    //   auth,
+    //   values.email,
+    //   values.password
+    // );
     await updateProfile(auth.currentUser, {
       displayName: values.fullname,
     });

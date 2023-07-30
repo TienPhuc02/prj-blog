@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../../Components/layout/Header";
+
 import Layout from "../../Components/layout/Layout";
 import HomeBanner from "../../module/home/HomeBanner";
 import HomeFeature from "../../module/home/HomeFeature";

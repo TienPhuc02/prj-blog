@@ -2,9 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 const PostMetaStyles = styled.div`
   display: flex;
+  font-weight: 600;
   margin-right: 9px;
   align-items: center;
-  column-gap: 10px;
+  column-gap: 15px;
   font-size: 14px;
   ${(props) =>
     props.type === "white" &&
@@ -23,7 +24,11 @@ const PostMetaStyles = styled.div`
   }
 `;
 const PostMeta = ({ children, className, type }) => {
-  return <PostMetaStyles type={type}>{children}</PostMetaStyles>;
+  return (
+    <PostMetaStyles className={className} type={type}>
+      {children}
+    </PostMetaStyles>
+  );
 };
 
 export default PostMeta;

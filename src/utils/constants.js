@@ -13,4 +13,5 @@ export const theme = {
   fontFamilyFeature: "Montserrat",
   bgButtonFeature: "#F3EDFF",
   colorTitle: "#232323",
+  colorTitle2: "#23BB86",
 };

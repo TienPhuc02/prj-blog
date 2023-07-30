@@ -25,6 +25,12 @@ const ButtonStyles = styled.button`
       color: white;
       background: linear-gradient(107.61deg, #00a7b4 15.59%, #a4d96c 87.25%);
     `};
+  ${(props) =>
+    props.kind === "secondary" &&
+    css`
+      color: ${(props) => props.theme.primary};
+      background-color: white;
+    `};
   margin: 0 auto;
   cursor: pointer;
   &:disabled {

@@ -33,15 +33,6 @@ const PostFeatureStyles = styled.div`
         height: 6px;
       }
     }
-    &-feature-title {
-      max-width: 326px;
-      position: absolute;
-      top: 65px;
-      left: 26px;
-      font-size: 22px;
-      color: ${(props) => props.theme.grayScale3};
-      font-family: ${(props) => props.theme.fontFamilyFeature};
-    }
   }
 `;
 const PostFeature = () => {

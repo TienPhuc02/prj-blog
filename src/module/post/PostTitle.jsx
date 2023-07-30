@@ -1,9 +1,9 @@
 import React from "react";
 import styled, { css } from "styled-components";
 const PostTitleStyles = styled.div`
-  font-weight: 500;
-  margin: 10px 0px;
   line-height: 28px;
+  font-weight: 600;
+  margin: 10px 0px;
   ${(props) =>
     props.size === "normal" &&
     css`
@@ -25,6 +25,17 @@ const PostTitleStyles = styled.div`
       font-size: 22px;
     `};
   ${(props) =>
+    props.className === "title-detail-header" &&
+    css`
+      line-height: 50px;
+      font-weight: 600;
+    `};
+  ${(props) =>
+    props.size === "bigger" &&
+    css`
+      font-size: 35px;
+    `};
+  ${(props) =>
     props.color === "black" &&
     css`
       color: #232323;
@@ -33,6 +44,11 @@ const PostTitleStyles = styled.div`
     props.color === "white" &&
     css`
       color: #ffffff;
+    `};
+  ${(props) =>
+    props.color === "green" &&
+    css`
+      color: #23bb86;
     `};
   font-family: ${(props) => props.theme.fontFamilyFeature};
 `;

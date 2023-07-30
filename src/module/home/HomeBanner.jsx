@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../../Components/button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const HomeBannerStyles = styled.div`
   height: 520px;
   color: white;
@@ -24,14 +24,17 @@ const HomeBannerStyles = styled.div`
       font-weight: 700;
       display: inline-block;
       font-size: 48px;
-      padding-left: 35px;
+
       padding-bottom: 30px;
       font-family: "Montserrat", sans-serif;
     }
     &-description {
-      width: 430px;
-      padding-left: 35px;
+      max-width: 421px;
+      width: 100%;
+
+      font-size: 14px;
       padding-bottom: 40px;
+      line-height: 28px;
       font-family: "Montserrat", sans-serif;
       font-weight: 400;
     }
@@ -40,7 +43,7 @@ const HomeBannerStyles = styled.div`
     }
     &-button {
       display: flex;
-      padding-left: 35px;
+
       justify-content: flex-start;
     }
   }
@@ -63,7 +66,9 @@ const HomeBanner = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
           </div>
           <div className="banner-button">
-            <Button onClick={onClick}>Get Started</Button>
+            <Button kind="secondary" onClick={onClick}>
+              Get Started
+            </Button>
           </div>
         </div>
         <div className="banner-logo">

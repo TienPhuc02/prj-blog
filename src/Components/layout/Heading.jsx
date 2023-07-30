@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 const HeadingStyles = styled.div`
+  margin-bottom: 30px;
   .heading {
     &-bar {
       width: 35px;
@@ -10,14 +11,19 @@ const HeadingStyles = styled.div`
     }
     &-title {
       font-size: 28px;
-      font-weight: 500;
+      font-weight: 600;
       color: ${(props) => props.theme.tertiary};
+      ${(props) =>
+        props.className === "green" &&
+        css`
+          color: ${(props) => props.theme.colorTitle2};
+        `};
     }
   }
 `;
 const Heading = (props) => {
   return (
-    <HeadingStyles>
+    <HeadingStyles className={props.className}>
       <div className="heading-bar"></div>
       <div className="heading-title">{props.children}</div>
     </HeadingStyles>

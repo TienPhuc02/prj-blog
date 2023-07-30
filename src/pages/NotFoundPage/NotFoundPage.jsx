@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../../Components/button";
 const NotFoundPageStyles = styled.div`
   height: 100vh;
   display: flex;
